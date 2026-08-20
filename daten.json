@@ -1,0 +1,28 @@
+{
+  "firma": "Testfirma GmbH",
+  "stelle": "Vorarbeiter GaLaBau (m/w/d)",
+  "ort": "Dortmund",
+  "farbe_primary": "#1E6B3C",
+  "farbe_secondary": "#6FA53A",
+  "benefit_top": "Übertarifliche Bezahlung · 4-Tage-Woche · moderner Maschinenpark",
+  "benefits": [
+    "Übertarifliche Bezahlung + Weihnachtsgeld",
+    "4-Tage-Woche (Mo–Do)",
+    "Moderner Maschinenpark & neue Geräte",
+    "30 Tage Urlaub",
+    "Firmenwagen zur Privatnutzung",
+    "Bezahlte Weiterbildungen (z. B. Baggerschein)"
+  ],
+  "aufgaben": [
+    "Baustellen im Privat- und Gewerbebereich eigenverantwortlich führen",
+    "Pflaster-, Naturstein- und Pflanzarbeiten ausführen",
+    "Kleines Team von 2–3 Kollegen anleiten",
+    "Material- und Maschineneinsatz koordinieren"
+  ],
+  "anforderung": "Ausgelernter Landschaftsgärtner (m/w/d) oder mindestens 3 Jahre Berufserfahrung im GaLaBau – Führerschein Klasse B.",
+  "kunde_tab": "00 Testfirma GmbH",
+  "quelle": "https://testfirma.green-careers.de",
+  "logo": "logo.svg",
+  "hero_bild": "img/hero.jpg",
+  "bilder": ["img/foto-1.jpg", "img/foto-2.jpg", "img/foto-3.jpg", "img/foto-4.jpg"]
+}
