@@ -77,14 +77,25 @@ button{font-family:inherit}
 /* ---------- Hero ---------- */
 .hero{position:relative;background:linear-gradient(158deg,color-mix(in srgb,var(--primary) 86%,#0b0f12) 0%,var(--primary) 52%,color-mix(in srgb,var(--primary) 74%,var(--secondary)) 100%);color:var(--on-primary);overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(620px 300px at 85% -10%,color-mix(in srgb,var(--on-primary) 14%,transparent),transparent 70%),radial-gradient(420px 260px at -10% 110%,color-mix(in srgb,var(--on-primary) 8%,transparent),transparent 70%);pointer-events:none}
-.hero-in{position:relative;max-width:720px;margin:0 auto;padding:44px 20px 46px;text-align:left}
+.hero-in{position:relative;max-width:720px;margin:0 auto;padding:36px 20px 42px;text-align:left}
+.hero h1 .mwd{font-size:.55em;font-weight:700;opacity:.85;white-space:nowrap}
 .badge{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--on-primary) 15%,transparent);border:1px solid color-mix(in srgb,var(--on-primary) 26%,transparent);color:var(--on-primary);font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:6px 12px;border-radius:999px;margin-bottom:16px}
 .hero h1{font-size:clamp(26px,7vw,40px);line-height:1.12;font-weight:800;letter-spacing:-.025em;margin-bottom:10px}
 .hero h1 .h1-sub{display:block;font-size:.58em;font-weight:700;opacity:.92;margin-top:8px;letter-spacing:-.01em}
-.hero-benefit{font-size:15.5px;font-weight:600;opacity:.94;margin-bottom:24px;max-width:520px}
+.hero-stellesub{font-size:14px;font-weight:600;opacity:.85;margin:-2px 0 12px}
+.hero-benefit{display:inline-block;background:var(--primary);color:var(--chip-ink,#fff);font-size:14.5px;font-weight:700;padding:9px 14px;border-radius:12px;margin-bottom:20px;max-width:100%;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.hero:not(.has-photo) .hero-benefit{background:color-mix(in srgb,var(--on-primary) 15%,transparent);color:var(--on-primary);box-shadow:none;border:1px solid color-mix(in srgb,var(--on-primary) 26%,transparent)}
+.hero-kicker{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin-bottom:5px}
+.hero-q-title{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.hero-tiles{display:flex;flex-direction:column;gap:9px;max-width:440px}
+.htile{display:flex;align-items:center;gap:11px;width:100%;min-height:54px;text-align:left;cursor:pointer;background:rgba(255,255,255,.97);border:1.5px solid rgba(255,255,255,.5);border-radius:14px;padding:11px 14px;font-family:inherit;font-size:15.5px;font-weight:700;color:var(--ink);box-shadow:0 10px 26px rgba(0,0,0,.25);transition:transform .12s,box-shadow .2s}
+.htile:active{transform:scale(.98)}
+.htile .ico{width:36px;height:36px;flex:none;border-radius:10px;background:color-mix(in srgb,var(--primary) 14%,#fff);display:grid;place-items:center;font-size:18px}
+.htile .arr{margin-left:auto;color:var(--primary-text);font-weight:800;transition:transform .2s}
+.htile:hover .arr{transform:translateX(3px)}
 .hero-micro{font-size:12.5px;font-weight:500;opacity:.78;margin-top:12px}
 /* Hero mit Kundenfoto (Banner aus der Stellenanzeige): dunkles Overlay + CI-Tint, Text immer weiß */
-.hero.has-photo{--on-primary:#fff;background-image:linear-gradient(color-mix(in srgb,var(--primary) 45%,transparent),color-mix(in srgb,var(--primary) 18%,transparent)),linear-gradient(rgba(10,13,11,.62),rgba(10,13,11,.5)),var(--hero-photo);background-size:auto,auto,cover;background-position:center;background-repeat:no-repeat}
+.hero.has-photo{--on-primary:#fff;background-image:linear-gradient(color-mix(in srgb,var(--primary) 28%,transparent),color-mix(in srgb,var(--primary) 10%,transparent)),linear-gradient(rgba(10,13,11,.58),rgba(10,13,11,.44)),var(--hero-photo);background-size:auto,auto,cover;background-position:center;background-repeat:no-repeat}
 .hero.has-photo::before{display:none}
 
 /* ---------- Galerie (echte Kundenfotos) ---------- */
@@ -93,6 +104,14 @@ button{font-family:inherit}
 .gal-track{display:flex;gap:12px;width:max-content;padding:4px 8px}
 .gal-track img{height:225px;width:auto;border-radius:16px;scroll-snap-align:start;box-shadow:var(--shadow);border:1.5px solid var(--line)}
 .gal-hint{text-align:center;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:10px}
+
+/* ---------- Über den Betrieb ---------- */
+.ueber-card{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);padding:20px 18px;box-shadow:var(--shadow)}
+.ueber-fakten{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.uf{flex:1;min-width:92px;background:color-mix(in srgb,var(--primary) 9%,#fff);border-radius:12px;padding:12px 8px;text-align:center}
+.uf b{display:block;font-size:22px;font-weight:800;color:var(--primary-text);letter-spacing:-.02em}
+.uf span{font-size:12px;color:var(--ink-soft);font-weight:600}
+.ueber-text{font-size:14.5px;color:var(--ink-soft);font-weight:500}
 
 /* ---------- Video ---------- */
 .video-card{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow);max-width:720px;margin:0 auto}
@@ -142,7 +161,7 @@ button{font-family:inherit}
 .prog{margin-bottom:20px}
 .prog-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--ink-soft);letter-spacing:.03em;text-transform:uppercase;margin-bottom:7px}
 .prog-track{height:8px;border-radius:99px;background:#edf0f2;overflow:hidden}
-.prog-bar{height:100%;width:8%;border-radius:99px;background:linear-gradient(90deg,var(--primary),color-mix(in srgb,var(--primary) 55%,var(--secondary)));transition:width .45s cubic-bezier(.4,0,.2,1)}
+.prog-bar{height:100%;width:8%;border-radius:99px;background:var(--primary);transition:width .45s cubic-bezier(.4,0,.2,1)}
 
 .screen{display:none;animation:fadeScreen .4s ease both}
 .screen.active{display:block}
@@ -195,8 +214,9 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
 
 /* ---------- Desktop ---------- */
 @media (min-width:768px){
-  .hero-in{padding:74px 24px 78px;text-align:center}
-  .hero-benefit{margin-left:auto;margin-right:auto}
+  .hero-in{padding:64px 24px 66px;text-align:center}
+  .hero-q{max-width:460px;margin:0 auto}
+  .hero-tiles{margin:0 auto}
   .sec{padding:52px 0}
   .benefit-grid{grid-template-columns:1fr 1fr;gap:12px}
   .job-cards{grid-template-columns:1.2fr 1fr;gap:14px}
@@ -204,6 +224,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
 }
 @media (min-width:1024px){
   .benefit-grid{grid-template-columns:1fr 1fr 1fr}
+  .gal-hint{display:none}
 }
 </style>
 </head>
@@ -219,9 +240,14 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
 <section class="hero has-photo" style="--hero-photo:url('img/hero.jpg')">
   <div class="hero-in">
     <span class="badge" data-animate>📍 Dortmund &amp; Umgebung</span>
-    <h1 data-animate style="--d:.06s">Vorarbeiter GaLaBau (m/w/d)<span class="h1-sub">bei Testfirma GmbH in Dortmund</span></h1>
+    <h1 data-animate style="--d:.06s">Vorarbeiter GaLaBau <span class="mwd">(m/w/d)</span><span class="h1-sub">bei Testfirma GmbH in Dortmund</span></h1>
+
     <p class="hero-benefit" data-animate style="--d:.12s">Übertarifliche Bezahlung · 4-Tage-Woche · moderner Maschinenpark</p>
-    <a href="#bewerben" class="btn btn-hero cta-pulse" data-animate style="--d:.18s">Jetzt in 60 Sekunden bewerben <span class="arrow">→</span></a>
+    <div class="hero-q" data-animate style="--d:.18s">
+      <p class="hero-kicker">Jetzt in 60 Sekunden bewerben</p>
+      <p class="hero-q-title">Welche Fachrichtung passt zu dir?</p>
+      <div class="hero-tiles" id="heroFach"></div>
+    </div>
     <p class="hero-micro" data-animate style="--d:.24s">Ohne Anschreiben. Ohne Lebenslauf.</p>
   </div>
 </section>
@@ -272,6 +298,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
   </div>
 </section>
 
+
 <section class="sec funnel-sec" id="bewerben">
   <div class="sec-in">
     <div class="funnel-card" id="funnelCard">
@@ -294,12 +321,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
       <section class="screen" id="s-quali">
         <button type="button" class="topback" data-back aria-label="Zurück">←</button>
         <p class="q-title">Was ist deine Qualifikation?</p>
-        <div class="options">
-          <button type="button" class="opt" data-field="qualifikation" data-value="Ausgelernt"><span class="ico">🎓</span><span class="lbl">Ausgelernt</span><span class="check"></span></button>
-          <button type="button" class="opt" data-field="qualifikation" data-value="Meister / Techniker"><span class="ico">🏅</span><span class="lbl">Meister / Techniker</span><span class="check"></span></button>
-          <button type="button" class="opt" data-field="qualifikation" data-value="Erfahren ohne Ausbildung"><span class="ico">💪</span><span class="lbl">Erfahren ohne Ausbildung</span><span class="check"></span></button>
-          <button type="button" class="opt" data-field="qualifikation" data-value="Quereinsteiger"><span class="ico">🔄</span><span class="lbl">Quereinsteiger</span><span class="check"></span></button>
-        </div>
+        <div class="options" id="qualiOptions"></div>
       </section>
 
       <section class="screen" id="s-erfahrung">
@@ -382,6 +404,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
 "use strict";
 var CFG = {"webhook": "https://hook.eu1.make.com/qbgtbw4765qldxs6k603mznvra7ml7s9", "kunde_tab": "00 Testfirma GmbH", "kunde": "Testfirma GmbH", "stelle": "Vorarbeiter GaLaBau (m/w/d)", "quelle": "https://testfirma.green-careers.de"};
 var FACHRICHTUNGEN = [{"label": "GaLaBau", "icon": "🌿"}, {"label": "Straßen- & Tiefbau", "icon": "🚧"}, {"label": "Baumschule", "icon": "🌳"}, {"label": "Sonstiges", "icon": "🛠️"}];
+var QUALIFIKATIONEN = [{"label": "Ausgelernt", "icon": "🎓"}, {"label": "Meister / Techniker", "icon": "🏅"}, {"label": "Erfahren ohne Ausbildung", "icon": "💪"}, {"label": "Quereinsteiger", "icon": "🔄"}];
 
 /* ---------- Kontrast-Automatik (helle CI-Farben) ---------- */
 (function(){
@@ -399,7 +422,10 @@ var FACHRICHTUNGEN = [{"label": "GaLaBau", "icon": "🌿"}, {"label": "Straßen-
     var p=getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
     var L=lum(p), r=document.documentElement.style;
     if(L>0.5) r.setProperty('--on-primary','#14181c');
-    if(L>0.4) r.setProperty('--primary-text','color-mix(in srgb, var(--primary) 55%, #14181c)');
+    r.setProperty('--chip-ink', L>0.5 ? '#14181c' : '#ffffff');
+    /* Helle Markenfarbe (Gelb & Co.): Text-Akzente neutral dunkel statt schmutzigem Mischton */
+    if(L>0.45) r.setProperty('--primary-text','#14181c');
+    else if(L>0.4) r.setProperty('--primary-text','color-mix(in srgb, var(--primary) 55%, #14181c)');
   }catch(e){}
 })();
 
@@ -428,18 +454,44 @@ var PROG={'s-fach':8,'s-quali':25,'s-erfahrung':45,'s-plz':62,'s-kontakt':80,'s-
 var CUR='s-fach', NAV_POP=false, MOUNTED=false, STARTED=false;
 var card=document.getElementById('funnelCard');
 
-/* Schritt-1-Optionen aus Konfiguration rendern */
-(function(){
-  var box=document.getElementById('fachOptions');
-  FACHRICHTUNGEN.forEach(function(f){
+/* Frage-Optionen aus Konfiguration rendern (pro Kunde aus der Stellenanzeige abgeleitet) */
+function renderOptions(boxId, list, field){
+  var box=document.getElementById(boxId);
+  list.forEach(function(f){
     var b=document.createElement('button');
     b.type='button'; b.className='opt';
-    b.setAttribute('data-field','fachrichtung');
+    b.setAttribute('data-field',field);
     b.setAttribute('data-value',f.label);
     b.innerHTML='<span class="ico"></span><span class="lbl"></span><span class="check"></span>';
     b.querySelector('.ico').textContent=f.icon||'👷';
     b.querySelector('.lbl').textContent=f.label;
     box.appendChild(b);
+  });
+}
+renderOptions('fachOptions', FACHRICHTUNGEN, 'fachrichtung');
+renderOptions('qualiOptions', QUALIFIKATIONEN, 'qualifikation');
+
+/* Frage 1 als Kacheln im Hero (bewährte v2-Mechanik: Bewerbung startet above the fold) */
+(function(){
+  var box=document.getElementById('heroFach');
+  FACHRICHTUNGEN.forEach(function(f){
+    var b=document.createElement('button');
+    b.type='button'; b.className='htile';
+    b.setAttribute('data-value',f.label);
+    b.innerHTML='<span class="ico"></span><span class="lbl"></span><span class="arr">→</span>';
+    b.querySelector('.ico').textContent=f.icon||'👷';
+    b.querySelector('.lbl').textContent=f.label;
+    box.appendChild(b);
+  });
+  box.addEventListener('click',function(e){
+    var t=e.target.closest('.htile'); if(!t) return;
+    if(!STARTED){ STARTED=true; mountForms(); }
+    S.fachrichtung=t.getAttribute('data-value');
+    /* Auswahl im Funnel-Screen synchron markieren (für Zurück-Navigation) */
+    document.querySelectorAll('#fachOptions .opt').forEach(function(o){
+      o.classList.toggle('sel', o.dataset.value===S.fachrichtung);
+    });
+    go('s-quali');
   });
 })();
 
