@@ -191,6 +191,9 @@ body.funnel-open .ov-head{display:flex}
 .funnel-head{text-align:center;margin-bottom:16px}
 .funnel-head h2{font-size:22px;margin-bottom:2px}
 .funnel-head p{font-size:13.5px;color:var(--ink-soft);font-weight:500}
+.fh-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin-top:9px;font-size:12px;font-weight:700;color:var(--ink-soft)}
+.fh-trust span::first-letter{color:#16A34A}
+.ssl-hint{text-align:center;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:11px}
 .prog{margin-bottom:20px}
 .prog-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--ink-soft);letter-spacing:.03em;text-transform:uppercase;margin-bottom:7px}
 .prog-track{height:8px;border-radius:99px;background:#edf0f2;overflow:hidden}
@@ -281,7 +284,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
       <p class="hero-q-title">Welche Fachrichtung passt zu dir?</p>
       <div class="hero-tiles" id="heroFach"></div>
     </div>
-    <p class="hero-micro" data-animate style="--d:.24s">Ohne Lebenslauf. Ohne Anschreiben. 100&nbsp;% unverbindlich.</p>
+    <p class="hero-micro" data-animate style="--d:.24s">Ohne Lebenslauf. Ohne Anschreiben. Job-Angebot in unter 7 Tagen.</p>
   </div>
 </section>
 
@@ -338,7 +341,8 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
       <div class="ov-head"><span id="ovBrand"></span><button type="button" class="ov-close" id="ovClose" aria-label="Schließen">×</button></div>
       <div class="funnel-head">
         <h2>Dein unverbindliches Job-Angebot</h2>
-        <p>Inkl. Gehalt &amp; allen Benefits – ohne Lebenslauf.</p>
+        <p>In unter 7 Tagen – inkl. Gehalt &amp; allen Benefits.</p>
+        <p class="fh-trust"><span>✓ 100&nbsp;% diskret</span><span>✓ Geprüfter Arbeitgeber</span><span>✓ Kostenlos</span></p>
       </div>
       <div class="prog" id="prog">
         <div class="prog-label"><span id="progStep">Schritt 1 von 3</span></div>
@@ -382,7 +386,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
         <div class="done">
           <div class="big">✓</div>
           <h2>Dein Job-Angebot ist unterwegs!</h2>
-          <p><span id="doneName"></span>Testfirma GmbH bzw. GreenCareers schickt dir alle Details innerhalb von 24–48 Stunden per WhatsApp.</p>
+          <p><span id="doneName"></span>Testfirma GmbH bzw. GreenCareers meldet sich innerhalb von 24–48 Stunden bei dir – dein Job-Angebot bekommst du in unter 7 Tagen.</p>
         </div>
         <div class="teilb-card">
           <h3>Bessere Chancen sichern 🎯</h3>
@@ -409,7 +413,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
         <div class="done">
           <div class="big">🎯</div>
           <h2>Stark – Profil vollständig!</h2>
-          <p>Testfirma GmbH bzw. GreenCareers hat jetzt alles und meldet sich per WhatsApp bei dir.</p>
+          <p>Testfirma GmbH bzw. GreenCareers hat jetzt alles und meldet sich innerhalb von 24–48 Stunden bei dir.</p>
         </div>
         <button type="button" class="btn btn-primary" id="fertigClose" style="margin-top:18px">Fertig ✓</button>
       </section>
@@ -466,7 +470,7 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
     <div class="field">
       <label for="fTel">Handynummer (WhatsApp)</label>
       <input id="fTel" name="telefon" type="tel" inputmode="tel" autocomplete="tel" placeholder="0151 23456789" required>
-      <p class="hint">Wir melden uns per WhatsApp bei dir.</p>
+      <p class="hint">100&nbsp;% diskret – dein aktueller Arbeitgeber erfährt nichts.</p>
     </div>
     <div class="field">
       <label for="fMail">E-Mail</label>
@@ -476,7 +480,8 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
       <input type="checkbox" id="fConsent" required>
       <span>Ich habe die <a href="https://www.green-careers.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden.</span>
     </label>
-    <button type="submit" class="btn btn-primary" id="submitBtn">Job-Angebot per WhatsApp erhalten <span class="arrow">→</span></button>
+    <button type="submit" class="btn btn-primary" id="submitBtn">Jetzt Job-Angebot erhalten <span class="arrow">→</span></button>
+    <p class="ssl-hint">🔒 Sichere SSL-Verschlüsselung &amp; 100&nbsp;% diskret</p>
   </form>
 </template>
 
@@ -727,7 +732,7 @@ function submit(){
       go('s-done');
     })
     .catch(function(){
-      btn.disabled=false; btn.innerHTML='Job-Angebot per WhatsApp erhalten <span class="arrow">→</span>';
+      btn.disabled=false; btn.innerHTML='Jetzt Job-Angebot erhalten <span class="arrow">→</span>';
       err('Das hat leider nicht geklappt. Bitte prüfe deine Internetverbindung und versuch es noch einmal.');
     });
 }
