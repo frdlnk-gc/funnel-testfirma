@@ -137,7 +137,7 @@ h1,h2,h3,h4,p,li,span,a,label,button,.badge,.hero-benefit,.htile,.option,.uf,.ka
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:none;cursor:pointer;font-weight:700;font-size:16.5px;min-height:52px;padding:14px 26px;border-radius:15px;text-decoration:none;transition:transform .12s,box-shadow .2s,filter .2s}
 .btn:active{transform:scale(.985)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.btn .arrow{transition:transform .2s}
+.btn .arrow{transition:transform .2s;flex:none}
 .btn:hover .arrow{transform:translateX(3px)}
 .btn-hero{background:var(--card);color:var(--primary-text);box-shadow:0 14px 34px rgba(0,0,0,.28)}
 .btn-primary{background:var(--primary);color:var(--on-primary);box-shadow:0 12px 28px color-mix(in srgb,var(--primary) 42%,transparent);width:100%}
@@ -190,6 +190,14 @@ body.funnel-open .ov-head{display:flex}
 .teilb-card h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
 .teilb-card p{font-size:13.5px;color:var(--ink-soft);font-weight:500;margin-bottom:14px;max-width:360px;margin-left:auto;margin-right:auto}
 .btn-ghost2{display:block;width:100%;margin-top:10px;background:transparent;border:none;color:var(--ink-soft);font-weight:600;font-size:13.5px;cursor:pointer;padding:10px;text-decoration:underline;text-underline-offset:3px}
+/* v3.5: Multi-Betrieb-Einwilligung */
+.multi-card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:18px 16px;margin-top:14px;text-align:center}
+.multi-card h3{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.multi-card p{font-size:13.5px;color:var(--ink-soft);font-weight:500;margin-bottom:12px;max-width:360px;margin-left:auto;margin-right:auto}
+.multi-check{display:flex;align-items:flex-start;gap:10px;text-align:left;font-size:13px;font-weight:600;color:var(--ink);margin:0 auto 12px;max-width:360px;cursor:pointer}
+.multi-check input{width:19px;height:19px;flex:none;margin-top:1px;accent-color:var(--primary);cursor:pointer}
+.multi-card .btn[disabled]{opacity:.45;cursor:not-allowed}
+.multi-done{font-size:14px;font-weight:700;color:#16A34A;padding:6px 0}
 .freitext{width:100%;font-family:inherit;font-size:16px;font-weight:500;color:var(--ink);padding:13px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;resize:none;min-height:96px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
 .freitext:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 16%,transparent)}
 .freitext::placeholder{color:#9aa5ad}
@@ -399,6 +407,12 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
           <button type="button" class="btn btn-primary" id="teilbStart">Profil vervollständigen <span class="arrow">→</span></button>
           <button type="button" class="btn-ghost2" id="teilbSkip">Das reicht erstmal</button>
         </div>
+        <div class="multi-card multiCard">
+          <h3>Weitere Top-Betriebe kennenlernen 🚀</h3>
+          <p>Sollen wir dein Profil auch anderen geprüften Betrieben in deiner Nähe vorstellen? 100 % diskret – du entscheidest bei jedem Angebot selbst.</p>
+          <label class="multi-check"><input type="checkbox" class="multiConsent"><span>Ja, mein Profil darf passenden Betrieben in meiner Region vorgestellt werden.</span></label>
+          <button type="button" class="btn btn-primary multiBtn" disabled>Weitere Top-Betriebe kennenlernen <span class="arrow">→</span></button>
+        </div>
       </section>
 
       <section class="screen" id="s-b1">
@@ -421,6 +435,12 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
           <p>Testfirma GmbH hat jetzt alles und meldet sich innerhalb von 24–48 Stunden bei dir.</p>
         </div>
         <button type="button" class="btn btn-primary" id="fertigClose" style="margin-top:18px">Fertig ✓</button>
+        <div class="multi-card multiCard">
+          <h3>Weitere Top-Betriebe kennenlernen 🚀</h3>
+          <p>Sollen wir dein Profil auch anderen geprüften Betrieben in deiner Nähe vorstellen? 100 % diskret – du entscheidest bei jedem Angebot selbst.</p>
+          <label class="multi-check"><input type="checkbox" class="multiConsent"><span>Ja, mein Profil darf passenden Betrieben in meiner Region vorgestellt werden.</span></label>
+          <button type="button" class="btn btn-primary multiBtn" disabled>Weitere Top-Betriebe kennenlernen <span class="arrow">→</span></button>
+        </div>
       </section>
 
       <p class="transparenz">Die Bewerbung läuft über GreenCareers – den Recruiting-Partner der Testfirma GmbH. Deine Daten gehen direkt an Testfirma GmbH.</p>
@@ -766,6 +786,29 @@ function submitProfil(){
       alert('Das hat leider nicht geklappt – bitte versuch es noch einmal.');
     });
 }
+
+/* v3.5: Multi-Betrieb-Einwilligung – schreibt "Ja" in Sheet-Spalte R (lead_id-Upsert) */
+function markMultiDone(){
+  document.querySelectorAll('.multiCard').forEach(function(c){
+    c.innerHTML='<p class="multi-done">✓ Alles klar! Wir melden uns, sobald ein weiterer Top-Betrieb zu dir passt.</p>';
+  });
+}
+function submitMulti(btn){
+  if(sessionStorage.getItem('gc_multi_'+LEAD_ID)){ markMultiDone(); return; }
+  btn.disabled=true; btn.textContent='Wird gesendet…';
+  fetch(CFG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({teil:'multi',lead_id:LEAD_ID,kunde_tab:CFG.kunde_tab,kunde:CFG.kunde,multi:'Ja'}),keepalive:true})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status);
+      sessionStorage.setItem('gc_multi_'+LEAD_ID,'1'); markMultiDone(); })
+    .catch(function(){
+      btn.disabled=false; btn.innerHTML='Weitere Top-Betriebe kennenlernen <span class="arrow">→</span>';
+      alert('Das hat leider nicht geklappt – bitte versuch es noch einmal.');
+    });
+}
+document.querySelectorAll('.multiCard').forEach(function(card){
+  var cb=card.querySelector('.multiConsent'), btn=card.querySelector('.multiBtn');
+  cb.addEventListener('change',function(){ btn.disabled=!cb.checked; });
+  btn.addEventListener('click',function(){ if(!btn.disabled) submitMulti(btn); });
+});
 </script>
 </body>
 </html>
