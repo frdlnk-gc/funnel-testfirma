@@ -34,6 +34,7 @@
 <meta name="theme-color" content="#1E6B3C">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgNTYwIDEyMCI+CiAgPHJlY3QgeD0iOCIgeT0iMTQiIHdpZHRoPSI5MiIgaGVpZ2h0PSI5MiIgcng9IjIyIiBmaWxsPSIjMUU2QjNDIi8+CiAgPHBhdGggZD0iTTMyIDg4IEMzMCA1OCA0NiAzNCA4MCAzMCBDNzggNjQgNTggODQgMzYgODggWiIgZmlsbD0iIzhGQ0I2QiIvPgogIDxwYXRoIGQ9Ik0zOCA4NCBDNTAgNjggNjIgNTAgNzQgMzYiIHN0cm9rZT0iIzFFNkIzQyIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8dGV4dCB4PSIxMjIiIHk9IjY0IiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MCIgZm9udC13ZWlnaHQ9IjgwMCIgbGV0dGVyLXNwYWNpbmc9IjEiIGZpbGw9IiMxYzJiMjIiPlRFU1RGSVJNQTwvdGV4dD4KICA8dGV4dCB4PSIxMjQiIHk9Ijk2IiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iIzViNjU3MCI+R2FydGVuLSAmYW1wOyBMYW5kc2NoYWZ0c2JhdTwvdGV4dD4KPC9zdmc+Cg==">
 <title>Vorarbeiter GaLaBau (m/w/d) bei Testfirma GmbH in Dortmund</title>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1986121842345009');fbq('track','PageView');</script><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1986121842345009&ev=PageView&noscript=1"/></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -527,8 +528,8 @@ var LEAD_ID=(function(){
   try{
     var p=getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
     var L=lum(p), r=document.documentElement.style;
-    if(L>0.5) r.setProperty('--on-primary','#14181c');
-    r.setProperty('--chip-ink', L>0.5 ? '#14181c' : '#ffffff');
+    if(L>0.42) r.setProperty('--on-primary','#14181c');
+    r.setProperty('--chip-ink', L>0.42 ? '#14181c' : '#ffffff');
     /* Helle Markenfarbe (Gelb & Co.): Text-Akzente neutral dunkel statt schmutzigem Mischton */
     if(L>0.45) r.setProperty('--primary-text','#14181c');
     else if(L>0.4) r.setProperty('--primary-text','color-mix(in srgb, var(--primary) 55%, #14181c)');
@@ -737,6 +738,8 @@ function submit(){
       if(!r.ok) throw new Error('HTTP '+r.status);
       var vn=S.name.split(' ')[0];
       document.getElementById('doneName').textContent='Danke, '+vn+'! ';
+      /* Meta-Lead NUR nach echtem, erfolgreichem Submit (validierter State) – eventID = lead_id für CAPI-Dedup */
+      try{ if(window.fbq) fbq('track','Lead',{},{eventID:LEAD_ID}); }catch(e){}
       go('s-done');
     })
     .catch(function(){
@@ -755,7 +758,9 @@ function submitProfil(){
   var btn=document.getElementById('profilBtn');
   btn.disabled=true; btn.textContent='Wird gesendet…';
   fetch(CFG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true})
-    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); go('s-fertig'); })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status);
+      try{ if(window.fbq) fbq('track','CompleteRegistration',{},{eventID:LEAD_ID+'-b'}); }catch(e){}
+      go('s-fertig'); })
     .catch(function(){
       btn.disabled=false; btn.innerHTML='Profil absenden <span class="arrow">→</span>';
       alert('Das hat leider nicht geklappt – bitte versuch es noch einmal.');
