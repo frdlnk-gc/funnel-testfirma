@@ -407,11 +407,12 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
           <button type="button" class="btn btn-primary" id="teilbStart">Profil vervollständigen <span class="arrow">→</span></button>
           <button type="button" class="btn-ghost2" id="teilbSkip">Das reicht erstmal</button>
         </div>
-        <div class="multi-card multiCard">
+        <div class="multi-card multiCard" id="multiCardDone" style="display:none">
           <h3>Weitere Top-Betriebe kennenlernen 🚀</h3>
           <p>Sollen wir dein Profil auch anderen geprüften Betrieben in deiner Nähe vorstellen? 100 % diskret – du entscheidest bei jedem Angebot selbst.</p>
           <label class="multi-check"><input type="checkbox" class="multiConsent"><span>Ja, mein Profil darf passenden Betrieben in meiner Region vorgestellt werden.</span></label>
           <button type="button" class="btn btn-primary multiBtn" disabled>Weitere Top-Betriebe kennenlernen <span class="arrow">→</span></button>
+          <button type="button" class="btn-ghost2" id="multiSkip">Nein danke</button>
         </div>
       </section>
 
@@ -434,13 +435,13 @@ footer{background:#fff;border-top:1px solid var(--line);padding:30px 16px 34px;t
           <h2>Stark – Profil vollständig!</h2>
           <p>Testfirma GmbH hat jetzt alles und meldet sich innerhalb von 24–48 Stunden bei dir.</p>
         </div>
-        <button type="button" class="btn btn-primary" id="fertigClose" style="margin-top:18px">Fertig ✓</button>
         <div class="multi-card multiCard">
           <h3>Weitere Top-Betriebe kennenlernen 🚀</h3>
           <p>Sollen wir dein Profil auch anderen geprüften Betrieben in deiner Nähe vorstellen? 100 % diskret – du entscheidest bei jedem Angebot selbst.</p>
           <label class="multi-check"><input type="checkbox" class="multiConsent"><span>Ja, mein Profil darf passenden Betrieben in meiner Region vorgestellt werden.</span></label>
           <button type="button" class="btn btn-primary multiBtn" disabled>Weitere Top-Betriebe kennenlernen <span class="arrow">→</span></button>
         </div>
+        <button type="button" class="btn-ghost2" id="fertigClose">Nein danke – fertig</button>
       </section>
 
       <p class="transparenz">Die Bewerbung läuft über GreenCareers – den Recruiting-Partner der Testfirma GmbH. Deine Daten gehen direkt an Testfirma GmbH.</p>
@@ -719,7 +720,13 @@ card.addEventListener('click',function(e){
 
 /* Teil-B-Steuerung auf dem Erfolgs-Screen */
 document.getElementById('teilbStart').addEventListener('click',function(){ go('s-b1'); });
-document.getElementById('teilbSkip').addEventListener('click',closeOverlay);
+/* v3.5.1: "Das reicht erstmal" zeigt die Multi-Betrieb-Frage (statt sofort zu schließen) – nie zwei Karten gleichzeitig */
+document.getElementById('teilbSkip').addEventListener('click',function(){
+  if(sessionStorage.getItem('gc_multi_'+LEAD_ID)){ closeOverlay(); return; }
+  var tb=document.querySelector('#s-done .teilb-card'); if(tb) tb.style.display='none';
+  document.getElementById('multiCardDone').style.display='block';
+});
+document.getElementById('multiSkip').addEventListener('click',closeOverlay);
 document.getElementById('fertigClose').addEventListener('click',closeOverlay);
 
 /* Hero-/Topbar-CTA: Funnel als Overlay öffnen (kein Weg-Scrollen) */
